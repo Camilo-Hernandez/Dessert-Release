@@ -18,4 +18,6 @@
     <string name="top_bar_name">Android Dessert Release</string>
     <string name="grid_layout_toggle">Grid layout</string>
     <string name="linear_layout_toggle">Linear layout</string>
+    <string name="dark_theme_toggle">Change to dark theme</string>
+    <string name="light_theme_toggle">Change to light theme</string>
 </resources>

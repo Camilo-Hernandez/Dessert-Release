@@ -44,13 +44,15 @@ import com.camihruiz24.dessert_release.ui.theme.DessertReleaseTheme
  */
 @Composable
 fun DessertReleaseApp(
-    dessertReleaseViewModel: DessertReleaseViewModel = hiltViewModel()
+    dessertReleaseViewModel: DessertReleaseViewModel = hiltViewModel(),
+    setDarkTheme: () -> Unit,
 ) {
     val uiState by dessertReleaseViewModel.uiState.collectAsStateWithLifecycle()
 
     DessertReleaseScreen(
         uiState = uiState,
-        selectLayout = dessertReleaseViewModel::selectLayout
+        selectLayout = dessertReleaseViewModel::selectLayout,
+        setDarkTheme = setDarkTheme,
     )
 }
 
@@ -58,7 +60,8 @@ fun DessertReleaseApp(
 @Composable
 private fun DessertReleaseScreen(
     uiState: DessertReleaseUiState,
-    selectLayout: (Boolean) -> Unit
+    selectLayout: (Boolean) -> Unit,
+    setDarkTheme: () -> Unit
 ) {
     val isLinearLayout = uiState.isLinearLayout
     Scaffold(
@@ -67,13 +70,20 @@ private fun DessertReleaseScreen(
                 title = { Text(stringResource(R.string.top_bar_name)) },
                 actions = {
                     IconButton(
-                        onClick = {
-                            selectLayout(!isLinearLayout)
-                        }
+                        onClick = setDarkTheme
                     ) {
                         Icon(
-                            painter = painterResource(uiState.toggleIcon),
-                            contentDescription = stringResource(uiState.toggleContentDescription),
+                            imageVector = uiState.themeIcon,
+                            contentDescription = stringResource(uiState.themeContentDescription),
+                            tint = MaterialTheme.colorScheme.onBackground,
+                        )
+                    }
+                    IconButton(
+                        onClick = { selectLayout(!isLinearLayout) }
+                    ) {
+                        Icon(
+                            painter = painterResource(uiState.layoutIcon),
+                            contentDescription = stringResource(uiState.layoutContentDescription),
                             tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
@@ -197,7 +207,8 @@ fun DessertReleaseAppPreview() {
     DessertReleaseTheme {
         DessertReleaseScreen(
             uiState = DessertReleaseUiState(),
-            selectLayout = {}
+            selectLayout = {},
+            setDarkTheme = {},
         )
     }
 }
