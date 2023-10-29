@@ -16,8 +16,11 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/*
- * View model of Dessert Release components
+/**
+ * View model of Dessert Release components.
+ * This view model is responsible for handling the UI State by combining both flows of the
+ * [PreferencesStorage] into the [DessertReleaseUiState] class to create the state flow.
+ * @param
  */
 @HiltViewModel
 class DessertReleaseViewModel @Inject constructor(
@@ -40,7 +43,7 @@ class DessertReleaseViewModel @Inject constructor(
             )
 
     /**
-     * [selectLayout] change the layout and icons accordingly and
+     * [selectLayout] changes the layout and icons accordingly and
      * save the selection in DataStore through [preferencesStorage]
      */
     fun selectLayout(isLinearLayout: Boolean) {

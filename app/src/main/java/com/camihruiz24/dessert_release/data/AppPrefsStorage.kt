@@ -69,10 +69,11 @@ class AppPrefsStorage @Inject constructor(
         dataStore.setValue(PreferencesKeys.IS_LINEAR_LAYOUT, isLinearLayout)
     }
 
-    /***
-     * handy function to save key-value pairs in Preference. Sets or updates the value in Preference
+    /**
+     * Handy function to save key-value pairs in Preference. Sets or updates the value in Preference
      * @param key used to identify the preference
      * @param value the value to be saved in the preference
+     * @return [Unit]
      */
     private suspend fun <T> DataStore<Preferences>.setValue(
         key: Preferences.Key<T>,
@@ -84,8 +85,9 @@ class AppPrefsStorage @Inject constructor(
         }
     }
 
-    /***
-     * handy function to return Preference value based on the Preference key
+    /**
+     * Handy function to return Preference value based on the Preference key.
+     *
      * @param key  used to identify the preference
      * @param defaultValue value in case the Preference does not exists
      * @throws Exception if there is some error in getting the value
