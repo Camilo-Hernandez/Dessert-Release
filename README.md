@@ -1,5 +1,5 @@
 # Dessert-Release
-This application displays a list of Android Releases in form of layout or grid depending on the user's preference saved with Preferences Datastore. The user can also change between dark and light mode.
+This application displays a list of Android Releases in form of layout or grid depending on the user's preference saved with Preferences Datastore. The app also persists user's selection of between dark and light mode.
 
 The aplication uses these Jetpack libraries:
 - Preferences Datastore to persist key-value pairs of data in the phone storage.
